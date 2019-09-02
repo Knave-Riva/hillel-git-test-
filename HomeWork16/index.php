@@ -22,7 +22,7 @@
         }
 
         public function tags(){
-            return $this->belongsToMany(tags::class);
+            return $this->belongsToMany(Tag::class);
         }
 
     }
@@ -34,22 +34,23 @@
 
     }
 
-    class Tags extends \Illuminate\Database\Eloquent\Model{
-//        public function posts(){
-//            return $this->belongsToMany(Post::class);
-//
-//        }
+    class Tag extends \Illuminate\Database\Eloquent\Model{
+        public function posts(){
+            return $this->belongsToMany(Post::class);
+
+        }
     }
+    $tags = Tag::find(1);
+       foreach ($tags->posts as $post) {
+       var_dump($post->title);
+       echo('<p>');
+        }
+
     $posts = Post::find(1);
-
-    var_dump($posts->tag);
-
-    //        foreach ($posts as $post) {
-    //        var_dump($post->tag);
-    //        var_dump($post->user->first_name);
-    //        var_dump($post->user->last_name);
-    //        echo('<p>');
-    //    }
+    foreach ($posts->tags as $tag) {
+        var_dump($tag->title);
+        echo('<p>');
+    }
 
 
 
